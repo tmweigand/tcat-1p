@@ -184,7 +184,8 @@ MacroscaleCompressible::update(const int iter,
         grad_e_rho_chem - (m_chem_potential * grad_ew_rho);
 
     dimensionedVector grad_e_rho_grav =
-        gradient(-rho * g, fvc::interpolate(rho * grav_potential));
+        gradient( (-rho * g) + fvc::reconstruct((ghf * fvc::snGrad(rho))*mesh.magSf()), fvc::interpolate(rho * grav_potential));
+
     dimensionedVector e_rho_grad_grav =
         grad_e_rho_grav - (m_grav_potential * grad_ew_rho);
 

@@ -16,7 +16,7 @@ FoamFile
 
 application     tcat-1p-steady;
 
-startFrom       startTime;
+startFrom       latestTime;
 
 startTime       0;
 
